@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #EFF5F5;
+    overflow: hidden;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.mainContainer {
+    width: 100%;
+    height: 100vh;
+    background-color: #EFF5F5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: left;
+}
+
+.heading {
+    background-color: #497174;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading .head {
+    background-color: #D6E4E5;
+    width: fit-content;
+    padding: 5px;
+    border: 2px solid #D6E4E5;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px #D6E4E5;
+}
+
+.head p {
+    color: #393E46;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    font-size: 1.1em;
+    text-transform: uppercase;
+}
+
+.boxContainer {
+    background-color: #497174;
+    width: 100%;
+    padding: 5px;
+}
+
+.boxContainer .innerBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 97.5%;
+    padding: 5px;
+    background-color: #DEF5E5;
+    border-radius: 4px;
+}
+
+.innerBox .leftCont,
+.controllerCont {
+    width: 24%;
+}
+
+.leftCont {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    width: 54%;
+}
+
+.btn {
+    padding: 4px;
+    margin: 2px;
+}
+
+.btn button {
+    padding: 3px 9px;
+    cursor: pointer;
+    border: 1.67px solid #EB6440;
+    border-radius: 3px;
+    background-color: #DEF5E5;
+}
+
+.btn button span {
+    color: #EB6440;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.btn button:hover {
+    background-color: #EB6440;
+    box-shadow: 0 0 5px #EB6440;
+}
+
+.btn button:hover span {
+    color: #D6E4E5;
+}
+
+.innerContainer {
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EFF5F5;
+    height: 400px;
+}
+
+.arrayCont {
+    padding: 5px;
+    margin: 1px;
+    display: flex;
+    flex-direction: row;
+}
+
+.subHeadingCont {
+    display: none;
+    padding: 3px;
+    margin: auto;
+}
+
+.subHeadingCont .subHeading {
+    padding: 2px;
+}
+
+.subHeading div {
+    padding: 1px;
+    margin: 1px;
+}
+
+.subHeading div p {
+    color: #272e39;
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.controllerCont {
+    padding: 5px;
+    margin: 2px;
+}
+
+.controllers {
+    padding: 2px;
+}
+
+.controllers div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+}
+
+.controllerCont .controllers div label {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 500;
+    font-size: 0.9em;
+    color: #272e39;
+}
+
+.incDec button {
+    margin-left: 5.56px;
+}
+
+.rodStyle {
+    width: 16px;
+    height: 1px;
+    margin: 0.4px;
+    background-color: yellow;
+    border: 2px solid black;
+}

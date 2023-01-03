@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="index.js"></script>
+</head>
+
+<body>
+    <div class="mainContainer">
+        <div class="heading">
+            <div class="head">
+                <p>Sorting Algorithm Visualizer</p>
+            </div>
+        </div>
+        <div class="boxContainer">
+            <div class="innerBox">
+                <div class="leftCont">
+                    <div class="btn">
+                        <button id="newArrBtn" title="get new array">
+                            <span>new array</span>
+                        </button>
+                    </div>
+                    <div class="btn incDec">
+                        <button id="decLen" title="decrease array length">
+                            <span>-</span>
+                        </button>
+                        <button id="incLen" title="increase array lenghth">
+                            <span>+</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="subHeadingCont" id="subHeadingCont">
+                    <div class="subHeading">
+                        <div>
+                            <p id="subHead">Performing Insertion Sort ...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttonContainer" id="buttonContainer">
+                    <div class="btn">
+                        <button id="bubbleSortBtn">
+                            <span>Bubble Sort</span>
+                        </button>
+                    </div>
+                    <div class="btn">
+                        <button id="insertionSortBtn">
+                            <span>Insertion Sort</span>
+                        </button>
+                    </div>
+                    <div class="btn">
+                        <button id="selectionSortBtn">
+                            <span>Selection Sort</span>
+                        </button>
+                    </div>
+                    <div class="btn">
+                        <button id="mergeSortBtn">
+                            <span>Merge Sort</span>
+                        </button>
+                    </div>
+                    <div class="btn">
+                        <button id="quickSortBtn">
+                            <span>Quick Sort</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="controllerCont">
+                    <div class="controllers">
+                        <div>
+                            <input type="range" name="range" id="speedController">
+                            <label for="speedController">Speed</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="innerContainer">
+            <div class="arrayCont" id="visualizerCont">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
