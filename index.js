@@ -19,7 +19,7 @@ let waitTime = 0;
 
 // unsorted array
 let arr = [];
-let len = 10; // initial length of array
+let len = 90; // initial length of array
 
 // creating a dictionary of div element that is rod
 let dict = {};
@@ -59,19 +59,17 @@ selectionSortBtn.addEventListener('click', () => {
     selectionSort(arr);
 });
 // to call merge sort function on button click
-mergeSortBtn.addEventListener('click', () => {
+mergeSortBtn.addEventListener('click', async () => {
     waitTime = getWaitTime();
     Performing("Merge Sort");
-    mergeSort(arr, len);
-    changeHeight();
+    await mergeSort(arr, len);
     subHead.innerHTML = "Completed Merge Sort";
 });
 // to call quick sort function on button click
-quickSortBtn.addEventListener('click', () => {
+quickSortBtn.addEventListener('click', async () => {
     waitTime = getWaitTime();
     Performing("Quick Sort");
-    quickSort(arr, len, 0, len - 1, 0, len + 1);
-    changeHeight();
+    await quickSort(arr, 0, len - 1, waitTime);
     subHead.innerHTML = "Completed Quick Sort";
 });
 
@@ -110,7 +108,7 @@ function increaseArraySize() {
     visualizerCont.innerHTML = "";
     generateRods(len);
     generateDict(dict, len);
-    changeHeight();
+    changeHeight(dict, arr);
 }
 
 // function to decrease the length of array
@@ -122,7 +120,7 @@ function decreaseArraySize() {
         visualizerCont.innerHTML = "";
         generateRods(len);
         generateDict(dict, len);
-        changeHeight();
+        changeHeight(dict, arr);
     }
     else {
         alert("Minimum Length is (5)");
@@ -150,12 +148,12 @@ function generateDict(dict, arrayLen) {
 generateDict(dict, len);
 
 // changing the length of element accrording to array
-function changeHeight() {
+function changeHeight(dict, arr) {
     for (let i = 0; i < arr.length; i++) {
         dict[`rod_${i + 1}`].style.height = `${arr[i]}px`;
     }
 }
-changeHeight();
+changeHeight(dict, arr);
 
 // swapping function
 function swap(arr, index_1, index_2) {
@@ -175,7 +173,7 @@ async function bubbleSort(g_arr) {
             await sleep(waitTime);
             if (g_arr[i] > g_arr[i + 1]) {
                 swap(g_arr, i, i + 1);
-                changeHeight();
+                changeHeight(dict, arr);
             }
             await sleep(waitTime);
             dict[`rod_${(i) + 1}`].style.background = "yellow";
@@ -198,7 +196,7 @@ async function selectionSort(g_arr) {
             await sleep(waitTime);
             if (g_arr[j] < g_arr[i]) {
                 swap(g_arr, i, j);
-                changeHeight();
+                changeHeight(dict, arr);
                 await sleep(waitTime);
             }
             await sleep(waitTime);
@@ -226,7 +224,7 @@ async function insertionSort(g_arr) {
                 await sleep(waitTime);
                 g_arr[j + 1] = g_arr[j];
                 g_arr[j] = value;
-                changeHeight();
+                changeHeight(dict, arr);
                 dict[`rod_${j + 1 + 1}`].style.background = "yellow";
                 dict[`rod_${i + 1}`].style.background = "black";
                 await sleep(waitTime);
@@ -252,18 +250,26 @@ async function mergeSort(arr, len) {
     // creating two empty arrays
     let leftArr = [];
     let rightArr = [];
+
     // adding elements to the arrays
-    for (let i = 0; i < leftLen; i++) {  // left array
+    let i = 0;
+    for (i = 0; i < leftLen; i++) {  // left array
         leftArr[i] = arr[i];
     }
-    for (let j = 0; j < rightLen; j++){
+    let j = 0;
+    for (j = 0; j < rightLen; j++) {
         rightArr[j] = arr[j + leftLen];
     }
+
     // recursion
-    mergeSort(leftArr, leftLen);
-    mergeSort(rightArr, rightLen);
+    await mergeSort(leftArr, leftLen); 
+    await mergeSort(rightArr, rightLen);
+
     // merging the arrays
     merge(arr, len, leftArr, leftLen, rightArr, rightLen);
+
+    changeHeight(dict, arr);
+    await sleep(waitTime);
 }
 async function merge(arr, len, leftArr, leftLen, rightArr, rightLen) {
     let i = 0;
@@ -294,46 +300,69 @@ async function merge(arr, len, leftArr, leftLen, rightArr, rightLen) {
 }
 
 // function for quick sort
-function quickSort(arr, len, pivot, q, p_val, q_val) {
-    if (len <= 1) {
+async function quickSort(arr, start_index, end_index, wait) {
+    if (start_index >= end_index) {
         return;
     }
 
-    let p = pivot;
+    dict[`rod_${start_index + 1}`].style.background = `purple`;
+    dict[`rod_${end_index + 1}`].style.background = `purple`;
+    await sleep(wait);
+    dict[`rod_${start_index + 1}`].style.background = `yellow`;
+    dict[`rod_${end_index + 1}`].style.background = `yellow`;
+    await sleep(wait);
 
-    for (p; p < len; p++) {
-        p_val++;
-        if (arr[p] > arr[pivot]) {
-            break;
+    let index = await partition(arr, start_index, end_index, wait);
+
+    await Promise.all(
+        [quickSort(arr, start_index, index - 1, wait), quickSort(arr, index + 1, end_index, wait)]
+    );
+}
+
+async function partition(arr, start, end, wait) {
+    let pivotVal = arr[start];
+    let pivotIndex = start;
+
+    if (pivotIndex != undefined) {
+        dict[`rod_${pivotIndex + 1}`].style.background = 'black';
+        await sleep(wait);
+    }
+
+    while (start < end) {
+        while (arr[start] <= pivotVal) {
+            start += 1;
+
+            dict[`rod_${start + 1}`].style.background = 'red';
+            await sleep(wait);
+        }
+        dict[`rod_${end + 1}`].style.background = 'green';
+        await sleep(wait);
+        while (arr[end] > pivotVal) {
+            end -= 1;
+
+            dict[`rod_${end + 1}`].style.background = 'green';
+            await sleep(wait);
+        }
+        if (start < end) {
+            swap(arr, start, end);
+
+            dict[`rod_${start + 1}`].style.background = 'blue';
+            dict[`rod_${end + 1}`].style.background = 'blue';
+            changeHeight(dict, arr);
+            await sleep(wait);
         }
     }
-    for (q; q >= pivot; q--) {
-        q_val--;
-        if (arr[q] <= arr[pivot]) {
-            break;
-        }
-    }
+    swap(arr, pivotIndex, end);
 
-    if (p_val >= q_val) {
-        let temp = arr[pivot];
-        arr[pivot] = arr[q];
-        arr[q] = temp;
+    dict[`rod_${pivotIndex + 1}`].style.background = 'orange';
+    dict[`rod_${end + 1}`].style.background = 'orange';
+    changeHeight(dict, arr);
+    await sleep(wait);
 
-        quickSort(arr, q, 0, q - 1, 0, q + 1);
-        quickSort(arr, len - (q + 1), q + 1, len - 1, 0, len - (q + 1));
-    }
-    else {
-        let temp = arr[p];
-        arr[p] = arr[q];
-        arr[q] = temp;
-
-        quickSort(arr, len, pivot, q, p_val, q_val);
-    }
+    return end;
 }
 
 // sleep function
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-

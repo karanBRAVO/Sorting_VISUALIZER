@@ -115,13 +115,15 @@ body {
     justify-content: center;
     background-color: #EFF5F5;
     height: 400px;
+    transform-origin: center;
+    transform: rotateZ(180deg);
 }
 
 .arrayCont {
     padding: 5px;
     margin: 1px;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
 }
 
 .subHeadingCont {
@@ -174,7 +176,7 @@ body {
 }
 
 .rodStyle {
-    width: 16px;
+    width: 5px;
     height: 1px;
     margin: 0.4px;
     background-color: yellow;
