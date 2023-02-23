@@ -213,7 +213,7 @@ async function insertionSort(g_arr) {
     let value;
     for (let i = 1; i < g_arr.length; i++) {
         value = g_arr[i];
-        dict[`rod_${i + 1}`].style.background = "black";
+        dict[`rod_${i + 1}`].style.background = "pink";
         await sleep(waitTime);
         for (let j = i - 1; j >= 0; j--) {
             waitTime = getWaitTime();  // update the wait_time in runtime
@@ -226,7 +226,7 @@ async function insertionSort(g_arr) {
                 g_arr[j] = value;
                 changeHeight(dict, arr);
                 dict[`rod_${j + 1 + 1}`].style.background = "yellow";
-                dict[`rod_${i + 1}`].style.background = "black";
+                dict[`rod_${i + 1}`].style.background = "pink";
                 await sleep(waitTime);
             }
             dict[`rod_${j + 1}`].style.background = "yellow";
@@ -262,7 +262,7 @@ async function mergeSort(arr, len) {
     }
 
     // recursion
-    await mergeSort(leftArr, leftLen); 
+    await mergeSort(leftArr, leftLen);
     await mergeSort(rightArr, rightLen);
 
     // merging the arrays
@@ -323,8 +323,8 @@ async function partition(arr, start, end, wait) {
     let pivotVal = arr[start];
     let pivotIndex = start;
 
-    if (pivotIndex != undefined) {
-        dict[`rod_${pivotIndex + 1}`].style.background = 'black';
+    if (dict[`rod_${pivotIndex + 1}`] != undefined) {
+        dict[`rod_${pivotIndex + 1}`].style.background = 'pink';
         await sleep(wait);
     }
 
@@ -332,8 +332,10 @@ async function partition(arr, start, end, wait) {
         while (arr[start] <= pivotVal) {
             start += 1;
 
-            dict[`rod_${start + 1}`].style.background = 'red';
-            await sleep(wait);
+            if (dict[`rod_${start + 1}`] != undefined) {
+                dict[`rod_${start + 1}`].style.background = 'red';
+                await sleep(wait);
+            }
         }
         dict[`rod_${end + 1}`].style.background = 'green';
         await sleep(wait);

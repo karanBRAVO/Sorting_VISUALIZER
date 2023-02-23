@@ -1,10 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+:root {
+    --mainColor: black;
+    --bgColor: white;
+    --textColor: white;
+    --hoverTextColor: black;
+    --shadowColor: white;
+    --borderColor: white;
+    --headingFontFamily: 'Tilt Prism', cursive;
+    --buttonFontFamily: 'Tilt Warp', cursive;
+    --textFontFamily: 'Open Sans', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #EFF5F5;
+    background-color: var(--mainColor);
     overflow: hidden;
     user-select: none;
     -moz-user-select: none;
@@ -13,7 +29,7 @@ body {
 .mainContainer {
     width: 100%;
     height: 100vh;
-    background-color: #EFF5F5;
+    background-color: var(--mainColor);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -21,7 +37,7 @@ body {
 }
 
 .heading {
-    background-color: #497174;
+    background-color: var(--mainColor);
     width: 100%;
     padding: 10px;
     display: flex;
@@ -30,24 +46,25 @@ body {
 }
 
 .heading .head {
-    background-color: #D6E4E5;
+    background-color: var(--mainColor);
     width: fit-content;
     padding: 5px;
-    border: 2px solid #D6E4E5;
+    border: 2px solid var(--borderColor);
     border-radius: 2px;
-    box-shadow: 0 2px 5px #D6E4E5;
+    box-shadow: 0 2px 5px var(--shadowColor);
 }
 
 .head p {
-    color: #393E46;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--textColor);
+    font-family: var(--headingFontFamily);
     font-weight: 500;
     font-size: 1.1em;
     text-transform: uppercase;
+    letter-spacing: 3.5px;
 }
 
 .boxContainer {
-    background-color: #497174;
+    background-color: var(--bgColor);
     width: 100%;
     padding: 5px;
 }
@@ -58,7 +75,7 @@ body {
     align-items: center;
     width: 97.5%;
     padding: 5px;
-    background-color: #DEF5E5;
+    background-color: var(--mainColor);
     border-radius: 4px;
 }
 
@@ -86,25 +103,27 @@ body {
 .btn button {
     padding: 3px 9px;
     cursor: pointer;
-    border: 1.67px solid #EB6440;
+    border: 1.67px solid var(--borderColor);
     border-radius: 3px;
-    background-color: #DEF5E5;
+    background-color: var(--mainColor);
+    transition: all 0.7s;
 }
 
 .btn button span {
-    color: #EB6440;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: var(--textColor);
+    font-family: var(--buttonFontFamily);
     font-size: 1em;
     font-weight: 500;
+    transition: all 0.25s;
 }
 
 .btn button:hover {
-    background-color: #EB6440;
-    box-shadow: 0 0 5px #EB6440;
+    background-color: var(--bgColor);
+    box-shadow: 0 0 5px var(--shadowColor);
 }
 
 .btn button:hover span {
-    color: #D6E4E5;
+    color: var(--hoverTextColor);
 }
 
 .innerContainer {
@@ -113,7 +132,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #EFF5F5;
+    background-color: var(--mainColor);
     height: 400px;
     transform-origin: center;
     transform: rotateZ(180deg);
@@ -142,8 +161,8 @@ body {
 }
 
 .subHeading div p {
-    color: #272e39;
-    font-family: monospace;
+    color: var(--textColor);
+    font-family: var(--textFontFamily);
     font-weight: 700;
     font-size: 1em;
 }
@@ -165,10 +184,10 @@ body {
 }
 
 .controllerCont .controllers div label {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: var(--textFontFamily);
     font-weight: 500;
     font-size: 0.9em;
-    color: #272e39;
+    color: var(--textColor);
 }
 
 .incDec button {
@@ -181,4 +200,40 @@ body {
     margin: 0.4px;
     background-color: yellow;
     border: 2px solid black;
+    transition: all 0.5s;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 60%;
+    background: transparent;
+    margin-bottom: 6px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border-radius: 50%;
+    height: 23px;
+    width: 23px;
+    cursor: default;
+    margin-top: -7.2px;
+    border: 1px solid var(--bgColor);
+    background: yellow;
+    box-shadow: 0 0 7px var(--shadowColor);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 10px;
+    border-radius: 1px;
+    border: 1px solid var(--borderColor);
+    background: var(--mainColor);
+    box-shadow: 0 0 7px var(--shadowColor);
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    color: transparent;
+    border-color: transparent;
 }
